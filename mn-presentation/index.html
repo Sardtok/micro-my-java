@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sigmund Hansen" />
+
+    <title>µµJ</title>
+
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/moon.css">
+</head>
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Micro My Java</h1>
+            <h2>- An intro to Micronaut -</h2>
+            <h3>Sigmund Hansen @ Uptime Consulting</h3>
+        </section>
+
+        <section>
+            <section>
+                <h2>Micronaut.io</h2>
+                <ul>
+                    <li>Web Microframework</li>
+                    <li>Embedded Netty HTTP server</li>
+                    <li>Annotation based routing</li>
+                    <li>AOP features</li>
+                    <li>Modular</li>
+                    <li>Ahead of time compilable</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Profiles</h2>
+                <ul>
+                    <li>Service (create-app)</li>
+                    <li>Shell application (create-cli-app)</li>
+                    <li>Serverless (create-function)</li>
+                    <li>Group of services (create-federation)</li>
+                    <li>Define your own (create-profile)</li>
+                    <li>Kafka (create-app --profile kafka)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Features / Modules</h2>
+                <ul>
+                    <li>Availability depends on profile</li>
+                    <li>
+                        Provides wide range of features
+                        <ul>
+                            <li>Persistence</li>
+                            <li>Service discovery</li>
+                            <li>Load balancing</li>
+                            <li>Server side rendering</li>
+                            <li>++</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>GraalVM</h2>
+                <ul>
+                    <li>VM research project from Oracle</li>
+                    <li>New compiler - JIT or AOT</li>
+                    <li>Polyglot - JS, Ruby, Python, R, etc.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>SubstrateVM</h2>
+                <li>Graal's AOT compiler</li>
+                <li>Supported by Micronaut: <br> Enable feature graal-native-image</li>
+                <li>IOC by preprocessor</li>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="reveal.js/js/reveal.js"></script>
+<script>
+    Reveal.initialize({
+        width: 1280,
+        height: 720
+    });
+</script>
+</body>
+</html>
