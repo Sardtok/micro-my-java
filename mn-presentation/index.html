@@ -68,7 +68,7 @@
                 <h1>Getting started!</h1>
                 <h2>Assignments</h2>
                 <p>
-                    If you haven't already done so, clone this repo:
+                    If you haven't already done so, clone this repo:<br>
                     <a style="text-transform: none;" href="https://github.com/Sardtok/micro-my-java">https://github.com/Sardtok/micro-my-java</a>
                 </p>
 
@@ -106,7 +106,10 @@
                         Add a controller for a Hello, World! function. Set its path to <code>/hello</code>
                         <ul><li>This is just temporary for testing, so you can be a bit dirty and make the Application the controller</li></ul>
                     </li>
-                    <li>Use the <code>@Controller</code> annotation - It's value is the context path that it handles requests for</li>
+                    <li>
+                        Use the <code>@Controller</code> annotation <br>
+                        - Its value is the context path that it handles requests for
+                    </li>
                     <li>Add a <code>@Get</code> method, taking an optional URI parameter for the name</li>
                     <li class="fragment"><code>@Get("{/name}"</code></li>
                     <li class="fragment">Match on name with method parameters</li>
@@ -130,7 +133,10 @@
                 <ul>
                     <li>Reported based on internal timer</li>
                     <li>What about the container?</li>
-                    <li><code>$ docker events</code> Gives us time and type of events for creation, start, shutdown, etc.</li>
+                    <li>
+                        <code>$ docker events</code><br>
+                        Gives us time and type of events for creation, start, shutdown, etc.
+                    </li>
                     <li>Could add call to date first to get a notion of timing</li>
                 </ul>
             </section>
@@ -161,7 +167,13 @@
                     <li>Add Project Lombok</li>
                     <li>Make sure Lombok annotation processing runs first</li>
                     <li>Annotate model with <code>@Data</code> and <code>@Builder</code></li>
-                    <li>Add Jackson annotation for builder <code>@JsonDeserialize</code></li>
+                    <li>Set up appropriate constructor for Jackson: <code>@RequiredArgsConstructor</code></li>
+                    <li>
+                        Disable use of all arg constructor from Jackson: <br>
+                        <code>@AllArgsConstructor(@__=@JsonIgnore)</code> <br>
+                        Builder automatically adds <code>@AllArgsConstructor</code>, <br>
+                        so need to get <code>@JsonIgnore</code> on the constructor
+                    </li>
                 </ul>
             </section>
 
