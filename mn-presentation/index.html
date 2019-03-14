@@ -17,6 +17,7 @@
             <h1>Micro My Java</h1>
             <h2>- An intro to Micronaut -</h2>
             <h3>Sigmund Hansen @ Uptime Consulting</h3>
+            <h4><a style="text-transform: none;" href="https://github.com/Sardtok/micro-my-java">https://github.com/Sardtok/micro-my-java</a></h4>
         </section>
 
         <section>
@@ -64,6 +65,150 @@
 
         <section>
             <section>
+                <h1>Getting started!</h1>
+                <h2>Assignments</h2>
+                <p>
+                    If you haven't already done so, clone this repo:
+                    <a style="text-transform: none;" href="https://github.com/Sardtok/micro-my-java">https://github.com/Sardtok/micro-my-java</a>
+                </p>
+
+                <p>
+                    Optionally, if you're feeling adventurous and have Micronaut CLI installed,
+                    create the project with <code>$ mn create-app mn-todo</code>
+                </p>
+            </section>
+
+            <section>
+                <h2>Building</h2>
+                <ul>
+                    <li>The default build system is Gradle</li>
+                    <li>Compile: <code>$ ./gradlew build</code></li>
+                    <li>Run: <code>./gradlew run</code></li>
+                    <li>Make sure you can build and run the app with Gradle</li>
+                    <li>Curl or open <a style="text-transform: none;" href="http://localhost:8080/">http://localhost:8080/</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Containers</h2>
+                <ul>
+                    <li>Micronaut CLI creates a Dockerfile for you</li>
+                    <li>Build container: docker build . -t mn-todo</li>
+                    <li>Run containerized: docker run -p8080:8080 mn-todo</li>
+                    <li>Make sure you can build and run the app</li>
+                    <li>Curl or open <a style="text-transform: none;" href="http://localhost:8080/">http://localhost:8080/</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Let's say Hi!</h2>
+                <ul>
+                    <li>
+                        Add a controller for a Hello, World! function. Set its path to <code>/hello</code>
+                        <ul><li>This is just temporary for testing, so you can be a bit dirty and make the Application the controller</li></ul>
+                    </li>
+                    <li>Use the <code>@Controller</code> annotation - It's value is the context path that it handles requests for</li>
+                    <li>Add a <code>@Get</code> method, taking an optional URI parameter for the name</li>
+                    <li class="fragment"><code>@Get("{/name}"</code></li>
+                    <li class="fragment">Match on name with method parameters</li>
+                    <li class="fragment">Does it render OK in the browser when it returns a String</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>HTTP method annotations parameters</h2>
+                <ul>
+                    <li>value/uri - URI template, relative to Controller</li>
+                    <li>consumes - Consumable media types</li>
+                    <li>produces - Producible media types</li>
+                    <li>processes - Sugar for same media types for both of the above</li>
+                    <li>single - Whether produced and consumed Reactive Stream Publishers have a single result</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Startup time</h2>
+                <ul>
+                    <li>Reported based on internal timer</li>
+                    <li>What about the container?</li>
+                    <li><code>$ docker events</code> Gives us time and type of events for creation, start, shutdown, etc.</li>
+                    <li>Could add call to date first to get a notion of timing</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Model</h2>
+                <ul>
+                    <li>POJOs</li>
+                    <li>Jackson handles View</li>
+                    <li>Well, there's Server Side View Rendering capabilities</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>ToDo items</h2>
+                <ul>
+                    <li>Text</li>
+                    <li>Completed</li>
+                    <li>ID - Use benefits of UUID</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lombok</h2>
+                <ul>
+                    <li>Add Project Lombok</li>
+                    <li>Make sure Lombok annotation processing runs first</li>
+                    <li>Annotate model with <code>@Data</code> and <code>@Builder</code></li>
+                    <li>Add Jackson annotation for builder <code>@JsonDeserialize</code></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Controller</h2>
+                <ul>
+                    <li>Add a new controller for <code>/todos</code></li>
+                    <li>
+                        Add placeholder methods:
+                        <ul>
+                            <li>GET - List of all ToDos</li>
+                            <li>POST - Create new items, returns ID</li>
+                            <li>GET with ID - Specific ToDo item</li>
+                            <li>PUT with ID - Update existing item</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>World's dumbest in-memory repository</h2>
+                <ul>
+                    <li>Add a <code>@Singleton</code> annotated bean</li>
+                    <li>Add a <code>ConcurrentHashMap</code></li>
+                    <li>
+                        Methods:
+                        <ul>
+                            <li>Method for adding an item</li>
+                            <li>Method for listing items</li>
+                            <li>Method for getting an item</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Put it all together</h2>
+                <ul>
+                    <li>Add the repository to the controller with <code>@Inject</code></li>
+                    <li>Implement the placeholder methods</li>
+                    <li>Test with curl (or whatever you like) as we go along</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
                 <h2>GraalVM</h2>
                 <ul>
                     <li>VM research project from Oracle</li>
@@ -77,6 +222,28 @@
                 <li>Graal's AOT compiler</li>
                 <li>Supported by Micronaut: <br> Enable feature graal-native-image</li>
                 <li>IOC by preprocessor</li>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Branch: graal-native-image</h2>
+                <ul>
+                    <li>Very different Dockerfile</li>
+                    <li>One additional dependency in build.gradle</li>
+                    <li>Merge changes into this branch</li>
+                    <li>Have a look at the Dockerfile</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Building the application</h2>
+                <ul>
+                    <li>Done through docker build now</li>
+                    <li><code>docker build . -t mn-todo-graal</code></li>
+                    <li>Run like before, but note the changed tag</li>
+                    <li><code>docker run -p8080:8080 mn-todo-graal</code></li>
+                </ul>
             </section>
         </section>
 
