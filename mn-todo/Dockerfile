@@ -1,7 +1,7 @@
-FROM gradle:jdk8 as builder
+FROM gradle:4.10-jdk8-slim as builder
 COPY --chown=gradle:gradle . /home/gradle/mn-todo
 WORKDIR /home/gradle/mn-todo
-RUN ./gradlew build
+RUN gradle build
 
 FROM oracle/graalvm-ce:1.0.0-rc11 as graalvm
 COPY --from=builder /home/gradle/mn-todo/ /home/gradle/mn-todo/
