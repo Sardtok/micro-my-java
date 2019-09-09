@@ -8,13 +8,14 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
 
 import io.micronaut.http.exceptions.HttpStatusException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 public class ToDoRepository {
-    Logger logger = Logger.getLogger("ToDoRepo");
+    Logger logger = LoggerFactory.getLogger(ToDoRepository.class);
     Map<UUID, ToDo> store = new ConcurrentHashMap<>();
 
     public ToDo getToDo(UUID uuid) {
@@ -26,7 +27,7 @@ public class ToDoRepository {
     }
 
     public UUID createToDo(ToDo toDo) {
-        System.err.println(toDo.toString());
+        logger.info(toDo.toString());
         toDo.setUuid(UUID.randomUUID());
         store.put(toDo.getUuid(), toDo);
         return toDo.getUuid();
