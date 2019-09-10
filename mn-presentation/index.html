@@ -36,12 +36,13 @@
             <section>
                 <h2>Profiles</h2>
                 <ul>
-                    <li>Service (create-app)</li>
-                    <li>Shell application (create-cli-app)</li>
-                    <li>Serverless (create-function)</li>
-                    <li>Group of services (create-federation)</li>
-                    <li>Define your own (create-profile)</li>
-                    <li>Kafka (create-app --profile kafka)</li>
+                    <li>Service: <code>create-app</code></li>
+                    <li>Shell application: <code>create-cli-app</code></li>
+                    <li>Serverless: <code>create-function</code></li>
+                    <li>Group of services: <code>create-federation</code></li>
+                    <li>Define your own: <code>create-profile</code></li>
+                    <li>Others: <code>create-app --profile &lt;profile_name&gt;</code></li>
+                    <li>List profiles: <code>list-profiles</code></li>
                 </ul>
             </section>
 
@@ -73,8 +74,8 @@
                 </p>
 
                 <p>
-                    Optionally, if you're feeling adventurous and have Micronaut CLI installed,
-                    create the project with <code>$ mn create-app mn-todo</code>
+                    Or use the Micronaut CLI:<br>
+                    <code>$ mn create-app mn-todo</code>
                 </p>
             </section>
 
@@ -83,18 +84,19 @@
                 <ul>
                     <li>The default build system is Gradle</li>
                     <li>Compile: <code>$ ./gradlew build</code></li>
-                    <li>Run: <code>./gradlew run</code></li>
+                    <li>Run: <code>$ ./gradlew run</code></li>
                     <li>Make sure you can build and run the app with Gradle</li>
                     <li>Curl or open <a style="text-transform: none;" href="http://localhost:8080/">http://localhost:8080/</a></li>
                 </ul>
             </section>
+
             <section>
                 <h2>Containers</h2>
                 <ul>
                     <li>Micronaut CLI creates a Dockerfile for you</li>
                     <li>Build container: docker build . -t mn-todo</li>
                     <li>Run containerized: docker run -p8080:8080 mn-todo</li>
-                    <li>Make sure you can build and run the app</li>
+                    <li>Make sure you can build and run the app dockerized</li>
                     <li>Curl or open <a style="text-transform: none;" href="http://localhost:8080/">http://localhost:8080/</a></li>
                 </ul>
             </section>
@@ -104,16 +106,16 @@
                 <ul>
                     <li>
                         Add a controller for a Hello, World! function. Set its path to <code>/hello</code>
-                        <ul><li>This is just temporary for testing, so you can be a bit dirty and make the Application the controller</li></ul>
+                        <ul><li>This is just temporary for testing, so you can be a bit dirty and make the <code>Application</code> the controller</li></ul>
                     </li>
                     <li>
                         Use the <code>@Controller</code> annotation <br>
                         - Its value is the context path that it handles requests for
                     </li>
                     <li>Add a <code>@Get</code> method, taking an optional URI parameter for the name</li>
-                    <li class="fragment"><code>@Get("{/name}"</code></li>
+                    <li class="fragment"><code>@Get("{/name}")</code></li>
                     <li class="fragment">Match on name with method parameters</li>
-                    <li class="fragment">Does it render OK in the browser when it returns a String</li>
+                    <li class="fragment">Does it render OK in the browser when it returns a <code>String</code>?</li>
                 </ul>
             </section>
 
@@ -169,10 +171,10 @@
                     <li>Annotate model with <code>@Data</code> and <code>@Builder</code></li>
                     <li>Set up appropriate constructor for Jackson: <code>@RequiredArgsConstructor</code></li>
                     <li>
-                        Disable use of all arg constructor from Jackson: <br>
+                        Disable use of all args constructor from Jackson: <br>
                         <code>@AllArgsConstructor(@__=@JsonIgnore)</code> <br>
-                        Builder automatically adds <code>@AllArgsConstructor</code>, <br>
-                        so need to get <code>@JsonIgnore</code> on the constructor
+                        <code>@Builder</code> automatically adds <code>@AllArgsConstructor</code>, <br>
+                        but we need <code>@JsonIgnore</code> as Jackson shouldn't use it
                     </li>
                 </ul>
             </section>
@@ -231,7 +233,7 @@
 
             <section>
                 <h2>SubstrateVM</h2>
-                <li>Graal's AOT compiler</li>
+                <li>Minimal VM for native images</li>
                 <li>Supported by Micronaut: <br> Enable feature graal-native-image</li>
                 <li>IOC by preprocessor</li>
             </section>
