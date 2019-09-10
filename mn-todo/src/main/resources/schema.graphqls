@@ -1,0 +1,9 @@
+type Query {
+  toDos: [ToDo!]!
+}
+
+type ToDo {
+  uuid: ID!
+  text: String
+  completed: Boolean
+}
