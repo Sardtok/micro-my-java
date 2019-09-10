@@ -262,6 +262,122 @@
         </section>
 
         <section>
+            <section>
+                <h2>GraphQL</h2>
+                <ul>
+                    <li>Popular alternative to RESTful JSON APIs</li>
+                    <li>Allows:
+                        <ul>
+                            <li>Fetching/mutating complex data structures</li>
+                            <li>Limiting what data is fetched/mutated</li>
+                        </ul>
+                    </li>
+                    <li>Schema-based</li>
+                    <li>Single endpoint for all queries</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Add dependencies</h2>
+                <ul>
+                    <li><code>io.micronaut.graphql:micronaut-graphql</code></li>
+                    <li><code>com.graphql-java-kickstart:graphql-java-tools:5.6.1</code></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Graph<i>i</i>QL</h2>
+                <ul>
+                    <li>Testing interface for browser</li>
+                    <li>Useful in development</li>
+                    <li>Enabled in application.yml</li>
+                    <li>Add top-level config:<br>
+                        <code>graphql.graphiql.enabled: true</code>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Add schema</h2>
+                <ul>
+                    <li>Create a new resource file: <code>schema.graphqls</code></li>
+                    <li>Add a query:<br>
+                        <code>
+type Query {
+  toDos: [ToDo!]!
+}
+                        </code>
+                    </li>
+                    <li>Add a type definition for ToDO:<br>
+                        <pre><code>type ToDo {
+  uuid: ID!
+  text: String
+  completed: Boolean
+}</code></pre>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Query Resolvers</h2>
+                <ul>
+                    <li>Create a new class: <code>mn.todo.graphql.ToDoQueryResolver</code></li>
+                    <li>Make it a <code>Singleton</code></li>
+                    <li>Implement GraphQLQueryResolver</li>
+                    <li>Inject our repository</li>
+                    <li>Write a method matching the <code>toDos</code> query from the schema</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>The GraphQL bean</h2>
+                <ul>
+                    <li>Needed by Micronaut's GraphQL feature</li>
+                    <li>Singleton Bean of pre-existing type</li>
+                    <li>Need a factory</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>GraphQLFactory</h2>
+                <ul>
+                    <li>Create a new <code>@Factory</code> annotated class:<br>
+                        <code>mn.todo.graphql.GraphQLFactory</code>
+                    </li>
+                    <li>Add a factory method annotated with <code>@Bean</code> and <code>@Singleton</code></li>
+                    <li>Give it a parameter of the type <code>ToDoQueryResolver</code></li>
+                    <li>The query resolver will magically be injected by the annotation processors</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Factory method contents</h2>
+                <ul>
+                    <li>Need to build a schema from our file</li>
+                    <li>Make a <code>SchemaParserBuilder</code> with <code>SchemaParser.newParser()</code></li>
+                    <li>Attach our file and resolver</li>
+                    <li>Build a SchemaParser and from it a <code>GraphQLSchema</code></li>
+                    <li>Return a <code>GraphQL</code> built from the schema</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Test using Graph<i>i</i>QL</h2>
+                <ul>
+                    <li>Go to <a href="http:/localhost:8080/graphiql">http:/localhost:8080/graphiql</a></li>
+                    <li>Make sure there's some data by posting to our JSON controller</li>
+                    <li>Now test some queries, e.q.:
+                        <pre><code>{
+  toDos {
+    uuid
+    text
+  }
+}</code></pre>
+                </ul>
+            </section>
+        </section>
+
+        <section>
             <h1>Thanks!</h1>
         </section>
     </div>
