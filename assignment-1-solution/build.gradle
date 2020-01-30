@@ -20,11 +20,9 @@ configurations {
 }
 
 dependencies {
-    annotationProcessor "org.projectlombok:lombok:1.18.8"
     annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
-    compileOnly "org.projectlombok:lombok:1.18.8"
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     implementation "io.micronaut:micronaut-inject"
     implementation "io.micronaut:micronaut-validation"
